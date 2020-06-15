@@ -1,4 +1,4 @@
-# Welcome to the Comprehensive Vue Class
+# Welcome to the Introduction to Angular Class
 
 ![Accelebrate Logo](images/accelebrate-logo.png "Accelebrate Logo")
 
