@@ -1,60 +1,7 @@
-<header>
-  <h1>{{headerText}}</h1>
-</header>
+<app-tool-header [headerText]="headerText"></app-tool-header>
 
-<table>
-  <thead>
-    <tr>
-      <th>Id</th>
-      <th>Make</th>
-      <th>Model</th>
-      <th>Year</th>
-      <th>Color</th>
-      <th>Price</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr *ngFor="let car of cars">
-      <td>{{car.id}}</td>
-      <td>{{car.make}}</td>
-      <td>{{car.model}}</td>
-      <td>{{car.year}}</td>
-      <td>{{car.color}}</td>
-      <td>{{car.price}}</td>
-    </tr>
-  </tbody>
-</table>
+<app-car-table [cars]="cars"></app-car-table>
 
-<form [formGroup]="carForm">
-
-  <label>
-    Make:
-    <input type="text" formControlName="make">
-  </label>
-
-  <label>
-    Model:
-    <input type="text" formControlName="model">
-  </label>
-
-  <label>
-    Year:
-    <input type="number" formControlName="year">
-  </label>
-
-  <label>
-    Color:
-    <select formControlName="color">
-      <option *ngFor="let carColor of carColors" [value]="carColor">
-        {{carColor}}</option>
-    </select>
-  </label>
-
-  <label>
-    Price:
-    <input type="number" formControlName="price">
-  </label>
-
-  <button type="button" (click)="addCar()">Add Car</button>
-
-</form>
+<app-car-form
+  buttonText="Add Car"
+  (submitCar)="addCar($event)"></app-car-form>
