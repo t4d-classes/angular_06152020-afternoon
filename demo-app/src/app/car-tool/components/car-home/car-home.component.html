@@ -24,3 +24,37 @@
     </tr>
   </tbody>
 </table>
+
+<form [formGroup]="carForm">
+
+  <label>
+    Make:
+    <input type="text" formControlName="make">
+  </label>
+
+  <label>
+    Model:
+    <input type="text" formControlName="model">
+  </label>
+
+  <label>
+    Year:
+    <input type="number" formControlName="year">
+  </label>
+
+  <label>
+    Color:
+    <select formControlName="color">
+      <option *ngFor="let carColor of carColors" [value]="carColor">
+        {{carColor}}</option>
+    </select>
+  </label>
+
+  <label>
+    Price:
+    <input type="number" formControlName="price">
+  </label>
+
+  <button type="button" (click)="addCar()">Add Car</button>
+
+</form>
