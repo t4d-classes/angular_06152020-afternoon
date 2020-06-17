@@ -5,6 +5,8 @@
 
 <div>Some Input: {{someInput.value}}</div>
 
+<button type="button" (click)="doDeleteFirstCar()">Delete First Car</button>
+
 <app-car-table-wrapper
   [cars]="cars"
   (deleteCar)="doDeleteCar($event)"></app-car-table-wrapper>

@@ -1,6 +1,7 @@
 import {
   Component, OnInit, Input, Output,
-  EventEmitter, ChangeDetectionStrategy
+  EventEmitter, ChangeDetectionStrategy,
+  AfterViewChecked,
 } from '@angular/core';
 
 import { Car } from '../../models/Car';
@@ -11,7 +12,7 @@ import { Car } from '../../models/Car';
   styleUrls: ['./car-table-wrapper.component.css'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class CarTableWrapperComponent implements OnInit {
+export class CarTableWrapperComponent implements OnInit, AfterViewChecked {
 
   @Input()
   cars: Car[] = [];
@@ -22,6 +23,10 @@ export class CarTableWrapperComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
+  }
+
+  ngAfterViewChecked(): void {
+    console.log('after view checked car-table-wrapper');
   }
 
   doDeleteCar(carId: number) {

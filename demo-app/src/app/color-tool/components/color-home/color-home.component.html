@@ -2,7 +2,7 @@
 
 <ul>
   <li *ngFor="let color of colors">
-    {{color.name}} - {{color.hexcode}}
+    {{color.name | myuppercase | myappend:'!!!!':'????'}} - {{color.hexcode}}
   </li>
 </ul>
 
