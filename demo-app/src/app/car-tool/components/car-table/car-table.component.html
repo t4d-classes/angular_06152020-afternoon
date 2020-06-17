@@ -7,11 +7,13 @@
       <th>Year</th>
       <th>Color</th>
       <th>Price</th>
+      <th>Actions</th>
     </tr>
   </thead>
   <tbody>
     <tr class="car-view-row"
       *ngFor="let car of cars" 
-      [car]="car"></tr>
+      [car]="car"
+      (deleteCar)="doDeleteCar($event)"></tr>
   </tbody>
 </table>

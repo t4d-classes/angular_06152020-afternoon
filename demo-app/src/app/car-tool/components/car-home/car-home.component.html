@@ -1,7 +1,14 @@
 <app-tool-header [headerText]="headerText"></app-tool-header>
 
-<app-car-table [cars]="cars"></app-car-table>
+
+<input type="text" [formControl]="someInput">
+
+<div>Some Input: {{someInput.value}}</div>
+
+<app-car-table-wrapper
+  [cars]="cars"
+  (deleteCar)="doDeleteCar($event)"></app-car-table-wrapper>
 
 <app-car-form
   buttonText="Add Car"
-  (submitCar)="addCar($event)"></app-car-form>
+  (submitCar)="doAddCar($event)"></app-car-form>

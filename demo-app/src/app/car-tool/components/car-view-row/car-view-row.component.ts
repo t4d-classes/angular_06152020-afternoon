@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 
 import { Car } from '../../models/Car';
 
@@ -12,9 +12,16 @@ export class CarViewRowComponent implements OnInit {
   @Input()
   car: Car = null;
 
+  @Output()
+  deleteCar = new EventEmitter<number>();
+
   constructor() { }
 
   ngOnInit(): void {
+  }
+
+  doDeleteCar() {
+    this.deleteCar.emit(this.car.id);
   }
 
 }
