@@ -1,0 +1,15 @@
+<form [formGroup]="contactForm">
+
+  <div>
+    <label>Full Name:</label>
+    <input type="text" formControlName="fullName">
+    <span>
+      CSS: Full name is required!
+    </span>
+    <span *ngIf="fullNameControlInvalid">
+      JS: Full name is required!
+    </span>
+  </div>
+
+
+</form>

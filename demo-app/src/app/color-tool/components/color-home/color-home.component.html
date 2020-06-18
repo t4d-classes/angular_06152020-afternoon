@@ -3,6 +3,7 @@
 <ul>
   <li *ngFor="let color of colors">
     {{color.name | myuppercase | myappend:'!!!!':'????'}} - {{color.hexcode}}
+    <button type="button" (click)="deleteColor(color.id)">X</button>
   </li>
 </ul>
 

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 
 import { Color } from '../../models/Color';
+import { ColorsService } from '../../services/colors.service';
 
 @Component({
   selector: 'app-color-home',
@@ -20,25 +21,35 @@ export class ColorHomeComponent implements OnInit {
 
   colorForm: FormGroup;
 
-  // private fb: FormBuilder;
-
-  // constructor(fb: FormBuilder) {
-  //   this.fb = fb;
-  // }
-
-  constructor(private fb: FormBuilder) { }
+  constructor(
+    private fb: FormBuilder,
+    private colorsSvc: ColorsService,
+  ) { }
 
   ngOnInit(): void {
+    this.refreshColors();
+
     this.colorForm = this.fb.group({
       name: '',
       hexcode: '',
     });
   }
 
+  refreshColors() {
+    this.colorsSvc.allColors().subscribe(colors => {
+      this.colors = colors;
+    });
+  }
+
   addColor() {
-    this.colors = this.colors.concat({
-      ...this.colorForm.value,
-      id: Math.max(...this.colors.map(c => c.id), 0) + 1,
+    this.colorsSvc.appendColor(this.colorForm.value).subscribe(() => {
+      this.refreshColors();
+    });
+  }
+
+  deleteColor(colorId: number) {
+    this.colorsSvc.removeColor(colorId).subscribe(() => {
+      this.refreshColors();
     });
   }
 

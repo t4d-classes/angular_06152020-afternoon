@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
 
 import { SharedModule } from '../shared/shared.module';
 
@@ -12,7 +13,7 @@ import { MyappendPipe } from './pipes/myappend.pipe';
   // refer to Color Home component within any template within this module
   declarations: [ColorHomeComponent, MyuppercasePipe, MyappendPipe],
   imports: [
-    CommonModule, ReactiveFormsModule, SharedModule,
+    CommonModule, ReactiveFormsModule, HttpClientModule, SharedModule,
   ],
   // allow us to use the component in template outside
   // of this module
