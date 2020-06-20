@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl } from '@angular/forms';
+import { concatMap } from 'rxjs/operators';
 
 import { Car } from '../../models/Car';
 import { CarsService } from '../../services/cars.service';
@@ -12,28 +12,57 @@ import { CarsService } from '../../services/cars.service';
 export class CarHomeComponent implements OnInit {
 
   headerText = 'Car Tool';
+
   cars: Car[] = [];
 
-  someInput = new FormControl('');
+  editCarIds: number[] = [];
 
   constructor(private carsSvc: CarsService) { }
 
   ngOnInit() {
-    this.cars = this.carsSvc.allCars();
+    this.refreshCars();
   }
 
-  doAddCar(car: Car) {
-    this.cars = this.carsSvc.appendCar(car).allCars();
+  refreshCars() {
+    this.carsSvc.allCars().subscribe(cars => this.cars = cars);
+    this.cancelAllCars();
   }
 
-  doDeleteFirstCar() {
-    // this.cars.splice(0, 1);
-    this.cars = this.carsSvc.removeCar(1).allCars();
-    console.log(this.cars);
+  addCar(car: Car) {
+    this.carsSvc
+      .appendCar(car)
+      .pipe(
+        concatMap(() => this.carsSvc.allCars())
+      )
+      .subscribe(cars => {
+        this.cars = cars;
+      });
   }
 
-  doDeleteCar(carId: number) {
-    this.cars = this.carsSvc.removeCar(carId).allCars();
+  saveCar(car: Car) {
+    // instead of two subscribes, consider doing the single subscribe stream in addCar
+    this.carsSvc.replaceCar(car).subscribe(() => {
+      this.refreshCars();
+    });
+  }
+
+  deleteCar(carId: number) {
+    this.carsSvc.removeCar(carId).subscribe(() => {
+      this.refreshCars();
+    });
+  }
+
+  editCar(carId: number) {
+    // this.editCarId = carId;
+    this.editCarIds = this.editCarIds.concat(carId);
+  }
+
+  cancelOneCar(carId: number) {
+    this.editCarIds = this.editCarIds.filter(cId => cId !== carId);
+  }
+
+  cancelAllCars() {
+    this.editCarIds = [];
   }
 
 }

@@ -1,0 +1,6 @@
+<ul>
+  <li ng-repeat="item in $ctrl.items">
+    {{$ctrl.itemContent(item)}}
+    <button type="button" ng-click="$ctrl.onRemoveItem({ itemKey: $ctrl.itemKey(item) })">X</button>
+  </li>
+</ul>

@@ -1,0 +1,50 @@
+{
+  "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
+  "version": 1,
+  "newProjectRoot": "projects",
+  "projects": {
+    "color-tool-lib": {
+      "projectType": "library",
+      "root": "projects/color-tool-lib",
+      "sourceRoot": "projects/color-tool-lib/src",
+      "prefix": "lib",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-ng-packagr:build",
+          "options": {
+            "tsConfig": "projects/color-tool-lib/tsconfig.lib.json",
+            "project": "projects/color-tool-lib/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "projects/color-tool-lib/tsconfig.lib.prod.json"
+            }
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/color-tool-lib/src/test.ts",
+            "tsConfig": "projects/color-tool-lib/tsconfig.spec.json",
+            "karmaConfig": "projects/color-tool-lib/karma.conf.js"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/color-tool-lib/tsconfig.lib.json",
+              "projects/color-tool-lib/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
+    }},
+  "cli": {
+    "analytics": false
+  },
+  "defaultProject": "color-tool-lib"
+}

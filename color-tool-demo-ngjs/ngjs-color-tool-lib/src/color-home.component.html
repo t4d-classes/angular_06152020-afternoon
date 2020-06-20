@@ -1,0 +1,7 @@
+<tool-header header-text="$ctrl.headerText"></tool-header>
+<item-list
+  items="$ctrl.colors"
+  item-content="$ctrl.colorContent"
+  item-key="$ctrl.colorKey"
+  on-remove-item="$ctrl.deleteColor(itemKey)"></item-list>
+<color-form on-submit-color="$ctrl.addColor($event)"></color-form>

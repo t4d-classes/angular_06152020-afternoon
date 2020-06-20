@@ -26,12 +26,12 @@
       "price": 45000
     },
     {
-      "id": 2,
       "make": "Tesla",
       "model": "S",
       "year": 2018,
       "color": "red",
-      "price": 100000
+      "price": "100001",
+      "id": 2
     }
   ]
 }

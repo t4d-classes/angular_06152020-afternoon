@@ -1,33 +1,34 @@
 <form [formGroup]="carForm">
-
-  <label>
-    Make:
-    <input type="text" formControlName="make">
-  </label>
-
-  <label>
-    Model:
-    <input type="text" formControlName="model">
-  </label>
-
-  <label>
-    Year:
-    <input type="number" formControlName="year">
-  </label>
-
-  <label>
-    Color:
-    <select formControlName="color">
+  <div *ngIf="showValidationSummary">
+    Please correct the entries below.
+  </div>
+  <div>
+    <label for="make-input">Make:</label>
+    <input type="text" id="make-input" formControlName="make" />
+    <span>
+      Make is required.
+    </span>
+  </div>
+  <div>
+    <label for="model-input">Model:</label>
+    <input type="text" id="model-input" formControlName="model" />
+  </div>
+  <div>
+    <label for="year-input">Year:</label>
+    <input type="number" id="year-input" formControlName="year" />
+  </div>
+  <div>
+    <label for="color-input">Color:</label>
+    <select id="color-input" formControlName="color">
+      <option disabled>Select One...</option>
       <option *ngFor="let carColor of carColors" [value]="carColor">
-        {{carColor}}</option>
+        {{carColor}}
+      </option>
     </select>
-  </label>
-
-  <label>
-    Price:
-    <input type="number" formControlName="price">
-  </label>
-
+  </div>
+  <div>
+    <label for="price-input">Price:</label>
+    <input type="number" id="price-input" formControlName="price" />
+  </div>
   <button type="button" (click)="doSubmitCar()">{{buttonText}}</button>
-
 </form>

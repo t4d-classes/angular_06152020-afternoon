@@ -1,0 +1,27 @@
+<div class="layout">
+
+  <header class="page-header">
+    <h1>A Cool Company, Inc.</h1>
+  </header>
+
+  <nav class="page-menu">
+    <ul>
+      <li><a routerLink="/">Home</a></li>
+      <li><a routerLink="/company/about">About</a></li>
+      <li><a routerLink="/company/contact/42">Contact</a></li>
+    </ul>
+  </nav>
+
+  <main class="page-content">
+    <router-outlet></router-outlet>
+  </main>
+
+  <aside class="page-sidebar">
+    Sidebar
+  </aside>
+
+  <footer class="page-footer">
+    <small>&copy; {{currentYear}} A Cool Company, Inc.</small>
+  </footer>
+
+</div>

@@ -1,16 +1,10 @@
 <app-tool-header [headerText]="headerText"></app-tool-header>
 
-
-<input type="text" [formControl]="someInput">
-
-<div>Some Input: {{someInput.value}}</div>
-
-<button type="button" (click)="doDeleteFirstCar()">Delete First Car</button>
-
-<app-car-table-wrapper
-  [cars]="cars"
-  (deleteCar)="doDeleteCar($event)"></app-car-table-wrapper>
+<app-car-table
+  [cars]="cars" [editCarIds]="editCarIds"
+  (editCar)="editCar($event)" (deleteCar)="deleteCar($event)"
+  (saveCar)="saveCar($event)" (cancelCar)="cancelOneCar($event)"></app-car-table>
 
 <app-car-form
   buttonText="Add Car"
-  (submitCar)="doAddCar($event)"></app-car-form>
+  (submitCar)="addCar($event)"></app-car-form>
